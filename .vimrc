@@ -26,6 +26,11 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Chiel92/vim-autoformat'
+"Plugin 'ryanoasis/vim-devicons'
 
  call vundle#end()            " required
  filetype plugin indent on    " required
@@ -59,12 +64,37 @@ endif
  set t_Co=256
  colorscheme one
 
+ let NERDTreeShowHidden=1
  let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
  let g:ycm_min_num_of_chars_for_completion = 4
- let g:ycm_error_symbol = '😱'
+ let g:ycm_error_symbol = '🦉'
  let g:ycm_add_preview_to_completeopt = 0
  let g:ycm_autoclose_preview_window_after_completion = 1
  let g:ycm_autoclose_preview_window_after_insertion = 1
+ let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
  let g:NERDTreeIndicatorMapCustom = {
      \ "Modified"  : "🙄",
@@ -81,6 +111,7 @@ endif
  set termencoding=utf-8
  set encoding=utf8
  set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+ "set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
  set cul
 
  set laststatus=2 
@@ -102,7 +133,6 @@ endif
  set hls
  set foldmethod=syntax
  set showcmd
- set tabstop=2
  set completeopt=longest,menu
 
  " backup
@@ -192,3 +222,5 @@ endif
  set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
 
  let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+ let g:syntastic_javascript_checkers = ['eslint']
+ let g:syntastic_always_populate_loc_list = 1
